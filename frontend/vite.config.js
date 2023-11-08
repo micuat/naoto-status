@@ -45,7 +45,7 @@ export default defineConfig(async ({ command, mode }) => {
       proxy: {
         '/api': {
           target: `http://localhost:${ !!process.env.BACKEND_PORT ? process.env.BACKEND_PORT : 40000 }`,
-          changeOrigin: true,
+          changeOrigin: { origin: "naoto-status.glitch.me" },
           secure: false,
         }
       }
