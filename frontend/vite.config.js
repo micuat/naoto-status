@@ -47,7 +47,12 @@ export default defineConfig(async ({ command, mode }) => {
         '/api': {
           target: `http://localhost:${ !!process.env.BACKEND_PORT ? process.env.BACKEND_PORT : 40000 }`,
           secure: false,
-        }
+        },
+        '/ws': {
+          target: `ws://localhost:${ !!process.env.BACKEND_PORT ? process.env.BACKEND_PORT : 40000 }`,
+          secure: false,
+          ws: true,
+        },
       }
     },
   };

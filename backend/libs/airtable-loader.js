@@ -13,7 +13,7 @@ export default class AirtableLoader {
     this.viewName = viewName;
     this.lastJson = "";
 
-    const dir = '/data/images';
+    const dir = process.env.DATA_PATH + "/images";
 
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
@@ -43,12 +43,12 @@ export default class AirtableLoader {
         if (e.fields.Attachments) {
           for (let i = 0; i < e.fields.Attachments.length; i++) {
             if (e.fields.Attachments[i].thumbnails?.large) {
-              if (fs.existsSync(`/data/images/${el.id}-${i}`) == false) {
+              if (fs.existsSync(`${ process.env.DATA_PATH }/images/${el.id}-${i}`) == false) {
                 let url = e.fields.Attachments[i].thumbnails.large.url;
                 const input = (await axios({ url, responseType: "arraybuffer" })).data;
                 await sharp(input)
                 .resize(600, 600)
-                .toFile(`/data/images/${el.id}-${i}`);
+                .toFile(`${ process.env.DATA_PATH }/images/${el.id}-${i}`);
               }
               el.images.push(`https://naoto-status-production.up.railway.app/api/images/${el.id}-${i}`)
             }
