@@ -37,12 +37,12 @@ export default class AirtableLoader {
         if (e.fields.Attachments) {
           for (let i = 0; i < e.fields.Attachments.length; i++) {
             if (e.fields.Attachments[i].thumbnails?.large) {
-              if (fs.existsSync(`/images/${el.id}-${i}`) == false) {
+              if (fs.existsSync(`/data/images/${el.id}-${i}`) == false) {
                 let url = e.fields.Attachments[i].thumbnails.large.url;
                 const input = (await axios({ url, responseType: "arraybuffer" })).data;
                 await sharp(input)
                 .resize(600, 600)
-                .toFile(`/images/${el.id}-${i}`);
+                .toFile(`/data/images/${el.id}-${i}`);
               }
               el.images.push(`/api/images/${el.id}-${i}`)
             }
