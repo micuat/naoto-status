@@ -37,7 +37,7 @@ export default defineConfig(async ({ command, mode }) => {
     },
     server: {
       host: "0.0.0.0",
-      port: !!process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT : 3000,
+      port: !!process.env.PORT ? process.env.PORT : 3000,
       strictPort: true,
       hmr: {
         clientPort: 443
