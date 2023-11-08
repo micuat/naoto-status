@@ -44,7 +44,7 @@ export default class AirtableLoader {
                 .resize(600, 600)
                 .toFile(`/data/images/${el.id}-${i}`);
               }
-              el.images.push(`/api/images/${el.id}-${i}`)
+              el.images.push(`https://naoto-status-production.up.railway.app/api/images/${el.id}-${i}`)
             }
           }
         }
