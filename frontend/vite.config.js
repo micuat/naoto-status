@@ -42,10 +42,10 @@ export default defineConfig(async ({ command, mode }) => {
       hmr: {
         clientPort: 443
       },
+      changeOrigin: { origin: "naoto-status.glitch.me" },
       proxy: {
         '/api': {
           target: `http://localhost:${ !!process.env.BACKEND_PORT ? process.env.BACKEND_PORT : 40000 }`,
-          changeOrigin: { origin: "naoto-status.glitch.me" },
           secure: false,
         }
       }

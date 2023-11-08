@@ -4,7 +4,7 @@ import express from 'express';
 const app = express();
 
 import { AceBase } from "acebase";
-const options = { logLevel: 'warn', storage: { path: '.' } }; // optional settings
+const options = { logLevel: 'warn', storage: { path: '/data' } }; // optional settings
 const db = await new AceBase('mydb', options);  // Creates or opens a database with name "mydb"
 
 app.use(express.json());
