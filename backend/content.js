@@ -59,6 +59,6 @@ router.get('/api/content', async function(req, res) {
 //   `).join(""));
 // });
 
-router.use('/api/images', express.static('images'))
+router.use('/api/images', express.static('/images'))
 
 export default router;
