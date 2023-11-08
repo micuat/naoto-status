@@ -12,6 +12,12 @@ export default class AirtableLoader {
     this.tableName = tableName;
     this.viewName = viewName;
     this.lastJson = "";
+
+    const dir = '/data/images';
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
   }
   poll() {
     setInterval(() => {
