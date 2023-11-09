@@ -22,7 +22,7 @@ export default class AirtableLoader {
   poll() {
     setInterval(() => {
       this.load();
-    }, 120 * 1000)
+    }, process.env.UPDATE_INTERVAL_SEC * 1000)
     this.load();
   }
   async load() {
