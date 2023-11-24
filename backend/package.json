@@ -4,7 +4,7 @@
   "description": "What am I about?",
   "main": "index.html",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon --exitcrash server.js"
   },
   "type": "module",
   "browserslist": [
