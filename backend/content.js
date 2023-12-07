@@ -22,14 +22,17 @@ const airtableLoader = new AirtableLoader(
 airtableLoader.poll();
 
 function formatData() {
-  return "<div id=idMessage> " + airtableLoader.elements.map(e => `
-  <div class="my-4">
-    <div>
-      <span class="text-gray-600">${ timeAgo.format(new Date(e.created)) }</span> <span>${ e.notes ? e.notes : "" }</span>
-    </div>
-    ${ e.images.map(e => `<img class="w-full max-w-xs inline" src=${ e } />`).join("") }
-  </div>
-`).join("").replace(/\n/g, "") + "</div>\n\n";
+  return "<div id=idMessage>" +
+    airtableLoader.elements.map(e => `${
+      e.images.map(im => `
+      <div class="w-64 relative group inline"><img class="w-full max-w-xs inline" src=${ im } />
+        <div class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 bg-gray-200 text-black font-semibold">
+          <div class="">${ e.notes ? e.notes : "" }</div>
+          <div class="text-gray-600">${ timeAgo.format(new Date(e.created)) }</div>
+        </div>
+      </div>`).join("") }`)
+      .join("").replace(/\n/g, "").replace(/\>[\n ]+\</g,'><') +
+    "</div>\n\n";
 }
 
 router.get('/api/content', async function(req, res) {
